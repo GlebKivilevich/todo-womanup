@@ -15,14 +15,22 @@ function App() {
   }
   
   const todoFetch = async () => {
-    await axios.get("https://637651ccb5f0e1eb8508cb48.mockapi.io/todoItem/")
-      .then(res => setItemTodo(res.data))
+    try {
+      await axios.get("https://637651ccb5f0e1eb8508cb48.mockapi.io/todoItem/")
+        .then(res => setItemTodo(res.data))
+    } catch(error) {
+      console.log("Ошибка при получении данных");
+      console.error(error);
+    }    
+  }
+
+  const removeItem = async (id) => {
+    await axios.delete(`https://637651ccb5f0e1eb8508cb48.mockapi.io/todoItem/${id}`);
+    setItemTodo((prev) => prev.filter(items => items.id !== id))
   }
   
-
   useEffect(() => {
     todoFetch();
-    console.log(obj);
   }, []);
 
   
@@ -30,7 +38,8 @@ function App() {
     <div className="wrapper">
       <AppContext.Provider value={{ 
         obj,
-        itemTodo
+        itemTodo,
+        removeItem
       }}>
         <Header/>
         <TodoList/>

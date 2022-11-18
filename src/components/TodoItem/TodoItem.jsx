@@ -3,7 +3,9 @@ import "./TodoItem.scss"
 import AppContext from '../../context';
 
  function TodoItem() {
-  const {itemTodo} = useContext(AppContext);
+  const {itemTodo, removeItem} = useContext(AppContext);
+
+  console.log(itemTodo);
   return (
     <div className='container-item'>
       {
@@ -16,10 +18,8 @@ import AppContext from '../../context';
                 <p><span>Выполнить до:</span> {item.data}</p>
               </div>
               <div className="control-block">
-                <button className='btn-del'><img src="../image/trash.svg" alt="delet"/></button>
-                
-              </div>
-              
+                <button onClick={() => removeItem(item.id)} className='btn-del'><img src="../image/trash.svg" alt="delet"/></button>
+              </div>               
             </div>
               
           );
