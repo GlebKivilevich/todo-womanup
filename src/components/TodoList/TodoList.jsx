@@ -1,13 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import TodoItem from '../TodoItem/TodoItem';
-import "./todoList.scss"
+import "./todoList.scss";
+import AppContext from '../../context';
 
 function TodoList() {
+  const {itemTodo} = useContext(AppContext);
   return (
     <div className="todo-list">
         {/* TODO: если нет item, добавить текст: "У вас нет заметок!" */}
         <div className="item">
-            <TodoItem/>
+          {itemTodo.length === 0 ? 
+            <h2 style={{textAlign: "center", fontSize: 32}}>У вас нет заметок</h2> : 
+              
+            <TodoItem/>}
+            
         </div>
     </div>
   )

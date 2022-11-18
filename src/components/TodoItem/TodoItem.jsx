@@ -1,12 +1,31 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import "./TodoItem.scss"
+import AppContext from '../../context';
 
  function TodoItem() {
+  const {itemTodo} = useContext(AppContext);
   return (
-    <div className='todo-item'>
-        <h2>Titel</h2>
-        <p>Description: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique eius repudiandae vel deserunt nesciunt tenetur impedit. Modi, voluptatem, velit voluptatibus facere debitis possimus corrupti architecto eaque iste aspernatur iusto repellat.</p>
-        <p>Выполнить до: 18.11.2022</p>
+    <div className='container-item'>
+      {
+        itemTodo.map((item) => {
+          return (
+            <div className='todo-item' key={item.id}>
+              <div className="desc-item">
+                <h2><span>Задача:</span> {item.titel}</h2>
+                <p><span>Описание:</span> {item.description}</p>
+                <p><span>Выполнить до:</span> {item.data}</p>
+              </div>
+              <div className="control-block">
+                <button className='btn-del'><img src="../image/trash.svg" alt="delet"/></button>
+                
+              </div>
+              
+            </div>
+              
+          );
+        })
+      }
+        
     </div>
   )
 }
