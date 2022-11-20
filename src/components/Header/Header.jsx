@@ -5,7 +5,7 @@ import "./header.scss";
 import AppContext from '../../context';
 
  function Header() {  
-  const {obj} = useContext(AppContext);
+  const {obj, setItemTodo, todoFetch} = useContext(AppContext);
 
   const [todoText, setTodoText] = useState("");
   const [description, setDescription] = useState("");
@@ -22,6 +22,7 @@ import AppContext from '../../context';
       obj.titel = todoText;
       obj.description = description;
       await axios.post("https://637651ccb5f0e1eb8508cb48.mockapi.io/todoItem/", obj);
+      todoFetch();
       setTodoText("");
       setDescription("");
     } else {

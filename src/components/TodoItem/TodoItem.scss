@@ -6,13 +6,23 @@
     padding-bottom: 10px;
     border-bottom: 1px solid #fff;
 
+    .desc-item {        
+        
+    }
+    .active {
+        text-decoration: line-through;
+    }
+
+    
+    
+
     p{
-        font-size: 24px;
+        font-size: 18px;
         margin: 3px 0;
 
         span {
             font-weight: bold;
-            font-size: 28px;
+            font-size: 22px;
         }
     }
 
@@ -22,5 +32,9 @@
         background-color: rgba(#000000, .0);
         padding: 5px 5px;
         cursor: pointer;
+    }
+    .control-block {
+        display: flex;
+        align-items: center;
     }
 }
