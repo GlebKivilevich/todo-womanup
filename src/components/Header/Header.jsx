@@ -5,10 +5,19 @@ import "./header.scss";
 import AppContext from '../../context';
 
  function Header() {  
-  const {obj, setItemTodo, todoFetch} = useContext(AppContext);
+
+  const obj = {
+    titel: "",
+    description: "",
+    date: null,
+    completed: false
+  }
+  const {todoFetch} = useContext(AppContext);
 
   const [todoText, setTodoText] = useState("");
   const [description, setDescription] = useState("");
+  const [dateDay, setDateDay] = useState("");
+  const [dateTime, setDateTime] = useState("");
 
   const inputAdd = (e) => {
     setTodoText(e.target.value);
@@ -17,19 +26,29 @@ import AppContext from '../../context';
     setDescription(e.target.value);
   }
 
+  const dateDayAdd = (e) => {
+    setDateDay(e.target.value);
+  }
+
+  const dateTimeAdd = (e) => {
+    setDateTime(e.target.value)
+  }
   const onAddTask = async () => {   
-    if(todoText.length >= 2 && description.length > 2) {      
+    if(todoText.length >= 2 && description.length > 2 && dateDay && dateTime) {      
       obj.titel = todoText;
       obj.description = description;
+      obj.date = `${dateDay} ${dateTime}`;
       await axios.post("https://637651ccb5f0e1eb8508cb48.mockapi.io/todoItem/", obj);
       todoFetch();
       setTodoText("");
       setDescription("");
+      setDateDay("");
+      setDateTime("");
     } else {
-      alert("Меньше 2 символов");
+      alert("Заполните все поля");
     }
   } 
-
+   
   return (
     <div className="header">
         <h1>Todo WomanUP</h1>
@@ -48,6 +67,18 @@ import AppContext from '../../context';
               placeholder='Введите описание' 
               value={description} 
               onChange={descriptionAdd}
+            />
+             <input 
+              className='input' 
+              type="date" 
+              value={dateDay} 
+              onChange={dateDayAdd}
+            />
+            <input 
+              className='input' 
+              type="time" 
+              value={dateTime}
+              onChange={dateTimeAdd}
             />
             <button 
               onClick={() => onAddTask()}
