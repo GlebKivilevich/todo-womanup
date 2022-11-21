@@ -9,12 +9,7 @@ import TodoList from './components/TodoList/TodoList';
 function App() {
   const [itemTodo, setItemTodo] = useState([]);
 
-  const obj = {
-    titel: "",
-    description: "",
-    data: null,
-    completed: false
-  }
+  
   
   const todoFetch = async () => {
     try {
@@ -26,15 +21,7 @@ function App() {
     }    
   }
 
-  const removeItem = async (id) => {
-    await axios.delete(`https://637651ccb5f0e1eb8508cb48.mockapi.io/todoItem/${id}`);
-    setItemTodo((prev) => prev.filter(items => items.id !== id))
-  }
 
-  const completedTodo = async (id, index) => {
-    await axios.put(`https://637651ccb5f0e1eb8508cb48.mockapi.io/todoItem/${id}`, {completed: !itemTodo[index].completed});
-    todoFetch();
-  }
   
   useEffect(() => {
     todoFetch();
@@ -43,12 +30,9 @@ function App() {
   
   return (
     <div className="wrapper">
-      <AppContext.Provider value={{ 
-        obj,
+      <AppContext.Provider value={{
         itemTodo,
         setItemTodo,
-        removeItem,
-        completedTodo,
         todoFetch
       }}>
         <Header/>

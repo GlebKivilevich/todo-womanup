@@ -6,23 +6,29 @@
     padding-bottom: 10px;
     border-bottom: 1px solid #fff;
 
-    .desc-item {        
+    // .desc-item {        
         
-    }
+    // }
     .active {
         text-decoration: line-through;
+        text-decoration-color: green;
+        text-decoration-thickness: 4px;
     }
-
-    
+    .distance {
+        color: #e30409;
+    }    
     
 
     p{
         font-size: 18px;
         margin: 3px 0;
+        display: flex;
+        align-items: start;
 
         span {
             font-weight: bold;
             font-size: 22px;
+            margin-right: 10px;
         }
     }
 
@@ -32,6 +38,7 @@
         background-color: rgba(#000000, .0);
         padding: 5px 5px;
         cursor: pointer;
+        width: 42px;
     }
     .control-block {
         display: flex;
