@@ -9,6 +9,9 @@ import TodoList from './components/TodoList/TodoList';
 function App() {
   const [itemTodo, setItemTodo] = useState([]);   
   
+  /**
+   * Функция todoFetch выполняет запрос на сервер, возращает данные.
+   */
   const todoFetch = async () => {
     try {
       await axios.get("https://637651ccb5f0e1eb8508cb48.mockapi.io/todoItem/")

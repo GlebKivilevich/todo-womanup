@@ -10,8 +10,7 @@ function TodoList() {
         <div className="item">
           {itemTodo.length === 0 ? 
             <h2 style={{textAlign: "center", fontSize: 32}}>У вас нет заметок</h2> 
-            : <TodoItem/>}
-            
+            : <TodoItem/>}            
         </div>
     </div>
   )
