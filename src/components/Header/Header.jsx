@@ -3,8 +3,6 @@ import axios from "axios";
 import "./header.scss";
 
 import AppContext from '../../context';
-import { type } from '@testing-library/user-event/dist/type';
-import { render } from '@testing-library/react';
 
  function Header() {  
   const obj = {
@@ -40,6 +38,8 @@ import { render } from '@testing-library/react';
   
   const reader = new FileReader();
   reader.onloadend = () => {
+    // const encodedData = window.btoa(reader.result);
+    // console.log(encodedData);
     setFileData(reader.result);
   }
 
