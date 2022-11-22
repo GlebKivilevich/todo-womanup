@@ -30,6 +30,12 @@ import AppContext from '../../context';
                 <h2><span>Задача:</span> <span className={item.completed ? "active" : null}>{item.titel}</span> </h2>
                 <p><span>Описание:</span> <span className={item.completed ? "active" : null}>{item.description}</span></p>
                 <p className={distance ? redClazz : null}><span>{distance ? "Время вышло:" : "Выполнить до:"}</span> <span className={item.completed ? "active" : null}>{item.date}</span> </p>
+                <div className='todo-file'>
+                  {
+                    item.file ?  <img src={item.file} alt="your photo" width={180}/>
+                    : null
+                  }                 
+                </div>
               </div>
               <div className="control-block">
                 <button className='btn-del' onClick={() => completedTodo(item.id, itemTodo.indexOf(item))}>

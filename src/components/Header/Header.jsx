@@ -3,14 +3,16 @@ import axios from "axios";
 import "./header.scss";
 
 import AppContext from '../../context';
+import { type } from '@testing-library/user-event/dist/type';
+import { render } from '@testing-library/react';
 
  function Header() {  
-
   const obj = {
     titel: "",
     description: "",
     date: null,
-    completed: false
+    completed: false,
+    file: null
   }
   const {todoFetch} = useContext(AppContext);
 
@@ -18,7 +20,9 @@ import AppContext from '../../context';
   const [description, setDescription] = useState("");
   const [dateDay, setDateDay] = useState("");
   const [dateTime, setDateTime] = useState("");
+  const [fileData, setFileData] = useState();
 
+  
   const inputAdd = (e) => {
     setTodoText(e.target.value);
   }
@@ -33,11 +37,28 @@ import AppContext from '../../context';
   const dateTimeAdd = (e) => {
     setDateTime(e.target.value)
   }
+  
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    setFileData(reader.result);
+  }
+
+  const fileDataAdd = (e) => {
+    const fileImg = e.target.files[0];
+    reader.readAsDataURL(fileImg);
+  }
+  
+
   const onAddTask = async () => {   
-    if(todoText.length >= 2 && description.length > 2 && dateDay && dateTime) {      
+    if(todoText.length >= 2 && description.length > 2 && dateDay && dateTime) {   
+      // localStorage.setItem(`${fileData}`, `${fileData}`);
+
       obj.titel = todoText;
       obj.description = description;
       obj.date = `${dateDay} ${dateTime}`;
+      console.log(fileData);
+      obj.file = `${fileData}`;
+
       await axios.post("https://637651ccb5f0e1eb8508cb48.mockapi.io/todoItem/", obj);
       todoFetch();
       setTodoText("");
@@ -79,6 +100,12 @@ import AppContext from '../../context';
               type="time" 
               value={dateTime}
               onChange={dateTimeAdd}
+            />
+             <input 
+              className='input' 
+              type="file"
+              accept="image/*"
+              onChange={fileDataAdd}
             />
             <button 
               onClick={() => onAddTask()}

@@ -7,9 +7,7 @@ import Header from './components/Header/Header';
 import TodoList from './components/TodoList/TodoList';
 
 function App() {
-  const [itemTodo, setItemTodo] = useState([]);
-
-  
+  const [itemTodo, setItemTodo] = useState([]);   
   
   const todoFetch = async () => {
     try {
@@ -20,8 +18,6 @@ function App() {
       console.error(error);
     }    
   }
-
-
   
   useEffect(() => {
     todoFetch();
